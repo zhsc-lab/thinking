@@ -1,0 +1,5 @@
+{
+  "hooks": {
+    "Stop": "python E:/zsc/Agent_zsc/thinking/finish_remind/src/finish_remind/stop_hook.py"
+  }
+}

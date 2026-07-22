@@ -9,6 +9,7 @@
 | 目录 | 说明 | 技术栈 |
 |------|------|--------|
 | [agent-error-feedback](./agent-error-feedback/) | 🤖 AI Agent 错误自动收集 → 四方分析 → 惩罚机制 → 质检门禁 → 知识注入闭环 | Python 3.12+ |
+| [finish_remind](./finish_remind/) | 🔔 Claude Code 任务完成提示音 + 邮件通知 Hook | Python 3.10+ |
 
 ## 使用方式
 
