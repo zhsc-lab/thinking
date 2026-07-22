@@ -1,0 +1,14 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Agent 错误预防规则注入配置 — 自动由 pipeline.py 生成维护",
+    "last_updated": "2026-07-22",
+    "last_pipeline_run": null,
+    "total_rules": 0,
+    "status": "initialized",
+    "last_cross_propagate": "2026-07-22 10:09",
+    "cross_propagate_count": 4
+  },
+  "active_injections": [],
+  "injection_history": []
+}

@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Agent 错误惩罚追踪数据库 — 每个(agent_type × error_tag)组合初始3分",
+    "last_updated": "2026-07-22",
+    "rules": {
+      "initial_points": 3,
+      "deduct_per_repeat": 1,
+      "severity3_extra_deduct": 1,
+      "reset_after_injection": true,
+      "injection_threshold": 0,
+      "weight_escalations": [
+        1.0,
+        1.5,
+        2.0,
+        3.0
+      ]
+    }
+  },
+  "tutor": {
+    "[Method]": {
+      "points": 3,
+      "strikes": 0,
+      "last_triggered": "2026-07-21",
+      "weight": 1.0,
+      "history": [
+        {
+          "date": "2026-07-21",
+          "change": "init",
+          "points_after": 3
+        }
+      ]
+    },
+    "[Communication]": {
+      "points": 3,
+      "strikes": 0,
+      "last_triggered": "2026-07-21",
+      "weight": 1.0,
+      "history": [
+        {
+          "date": "2026-07-21",
+          "change": "init",
+          "points_after": 3
+        }
+      ]
+    }
+  },
+  "studyera": {},
+  "claude": {}
+}
