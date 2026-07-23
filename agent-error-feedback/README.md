@@ -163,8 +163,7 @@ python -m src.aefs.hook_engine --all      # 查看所有 Agent
 
 ```
 .
-├── README.md                          ← 本文件
-├── CHANGELOG.md                       ← 更新日志
+├── README.md                          ← 本文件（含更新日志）
 ├── LICENSE                            ← MIT 许可证
 ├── pyproject.toml                     ← 项目元数据
 │
@@ -491,7 +490,37 @@ Agent 执行出错时应立即写 JSON 到 `inbox/`：
 
 ## 十二、更新日志
 
-### [1.0.0] — 2026-07-22
+### [2.0.0] — 2026-07-22
+
+#### 🚀 新增
+
+**TEAL V2.0 — 终端错误自动检测层**
+- **新增 `update_report()`**：修复后补充实际解决方案到已上报的错误报告
+- **新增 `--update` CLI**：`python _terminal_monitor.py --update 文件名.json "解决方案"`
+- **修复后标记**：`source` 字段从 `terminal-auto-detect` 变为 `+fixed`
+- **修改历史追踪**：`_teal_meta.updated_at` / `update_count` 记录更新版本
+- **`teal.cmd` 增强**：支持 `teal update 文件.json "方案"` 子命令
+
+**Agent 自动错误检测协议 V2.0**
+- **从手动自报升级为自动检测上报**：Agent 每次工具调用后自动检查 exit_code/stderr/工具错误
+- **检测即上报**：错误出现后**先 teal 上报再修复**，确保错误不被遗忘
+- **修复后更新**：`teal update` 写入实际解决方案，供 AEFS 提取生成预防规则
+- **完整闭环**：上报 → 修复 → update → AEFS 处理 → 跨 session 知识继承
+
+**严重度判定体系完整文档化**
+- **三级划分**：1(小问题) / 2(中等) / 3(严重)
+- **判定优先级**：stderr 模式匹配 → exit_code 映射 → 描述关键词 → 默认 2
+- **exit_code 映射表正式化**：124(超时)=2、130(Ctrl+C)=1、137(OOM)=3、139(Segfault)=3 等
+- **描述关键词表**：每个严重度对应触发词列表（如 OOM/Killed→3，超时/冲突→2）
+
+#### 🔧 优化
+- Agent 不再依赖用户发现错误——自动检测，立即上报
+- 简化使用：`teal`（无描述兜底）/ `teal pip 超时`（一句话）/ `teal update`（修复后补充）
+- 5 分钟去重窗口 + 每标签最多 3 次/session，无害警告自动过滤
+
+---
+
+### [1.0.0] — 2026-07-21
 
 #### 🚀 新增
 
